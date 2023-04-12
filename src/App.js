@@ -1,23 +1,34 @@
 import logo from './logo.svg';
 import './App.css';
+import DynamicForm from './DynamicRouterForm.js';
+import Home from './Home.js';
+import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom';
+import SteperForm from './components/SteperForm';
+import WizzardForm from './components/WizzardForm';
+
+const formAction = async ({ request, response }) => {
+  console.log(request);
+
+  const elementsOfForm = await request.formData();
+  console.log('Thiws is the request element of form: ', elementsOfForm.get('name'));
+
+  return null;
+}
+
+const router = createBrowserRouter(
+  [
+    { path: "/", element: <Home />, action: formAction },
+    { path: "/form", element: <DynamicForm />, action: formAction },
+    { path: "/stepper", element: <SteperForm /> },
+    { path: "/wizzard", element: <WizzardForm /> }
+  ]
+);
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <RouterProvider router={router} />
     </div>
   );
 }
