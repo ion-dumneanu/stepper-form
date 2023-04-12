@@ -1,9 +1,6 @@
-import logo from './logo.svg';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
-import DynamicForm from './DynamicRouterForm.js';
 import Home from './Home.js';
-import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom';
-import SteperForm from './components/SteperForm';
 import WizzardForm from './components/WizzardForm';
 
 const formAction = async ({ request, response }) => {
@@ -18,12 +15,9 @@ const formAction = async ({ request, response }) => {
 const router = createBrowserRouter(
   [
     { path: "/", element: <Home />, action: formAction },
-    { path: "/form", element: <DynamicForm />, action: formAction },
-    { path: "/stepper", element: <SteperForm /> },
     { path: "/wizzard", element: <WizzardForm /> }
   ]
 );
-
 
 function App() {
   return (
