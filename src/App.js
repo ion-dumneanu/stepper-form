@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import Home from './Home.js';
-import WizzardForm from './components/WizzardForm';
+import StepperForm from './components/StepperForm';
 
 const formAction = async ({ request, response }) => {
   console.log(request);
@@ -15,7 +15,7 @@ const formAction = async ({ request, response }) => {
 const router = createBrowserRouter(
   [
     { path: "/", element: <Home />, action: formAction },
-    { path: "/wizzard", element: <WizzardForm /> }
+    { path: "/stepper-form", element: <StepperForm /> }
   ]
 );
 
